@@ -1,0 +1,157 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>jaxrs-rest-api-poc</groupId>
+    <artifactId>com.poc.v2</artifactId>
+    <packaging>jar</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>com.poc.v2</name>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.glassfish.jersey</groupId>
+                <artifactId>jersey-bom</artifactId>
+                <version>${jersey.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-grizzly2-http</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-hk2</artifactId>
+        </dependency>
+
+         <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-binding</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Testing -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.3.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- <dependency> <groupId>org.mockito</groupId> <artifactId>mockito-core</artifactId> 
+			<version>2.21.0</version> <scope>test</scope> </dependency> -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.5.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-runner</artifactId>
+			<version>1.2.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<version>5.2.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>2.23.0</version>
+			<scope>test</scope>
+		</dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+        <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <configuration>
+                    <skip>${maven.test.skip}</skip>
+                    <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
+                    <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
+                    <output>file</output>
+                    <append>true</append>
+                    <excludes>
+                        <exclude>*MethodAccess</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <phase>test-compile</phase>
+                    </execution>
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.2</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>com.lm.services.Main</mainClass>
+                    <excludes>
+        <exclude>**/*Main.*</exclude>
+    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <jersey.version>3.0.0-M6</jersey.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+         <java.version>1.8</java.version>
+     <!--   <problem-spring-web.version>0.25.0</problem-spring-web.version> -->
+        <jacoco.version>0.8.3</jacoco.version>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.language>java</sonar.language>
+    </properties>
+</project>
