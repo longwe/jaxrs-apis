@@ -3,8 +3,8 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>jaxrs-rest-api-poc</groupId>
-    <artifactId>com.poc.v2</artifactId>
+    <groupId>jaxrs-rest-apis-poc</groupId>
+    <artifactId>com.poc.v3</artifactId>
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>com.poc.v2</name>
@@ -35,6 +35,12 @@
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-binding</artifactId>
         </dependency>
+        <dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.18.12</version>
+		<scope>provided</scope>
+	</dependency>
         
         <dependency>
             <groupId>junit</groupId>

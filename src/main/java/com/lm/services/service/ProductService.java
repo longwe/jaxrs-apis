@@ -21,8 +21,6 @@ public interface ProductService {
 	
 	public boolean deleteProductById (int productId);
 	
-	//public boolean updateProduct(Product product);
-	
 	public Product updateExistingProduct(Product product);
 	
 	
